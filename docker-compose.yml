@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  nginx:
+    build: 
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"
+    container_name: nginx 
+  client:
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    # port: 
+    #   - "3000:3000"
+    container_name: client 
+  backend:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    # port: 
+    #   - "5000:5000"
+    container_name: backend 
+    env_file:
+      - ./env/backend.env
+  # mongo:
+  #   image: "mongo"
+  #   container_name: "mongo-db"
